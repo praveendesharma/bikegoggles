@@ -15,8 +15,22 @@
     <link rel="stylesheet" href="map.css" />
 </head>
 <body>
-    <h1>🚴🏼‍♀️ Bike Goggles</h1>
-    <p>Welcome to the Bike Goggles page! This is a project for DSC 106 Lab 07.</p>
+    <header>
+        <h1>🚴🏼‍♀️ Bike Goggles</h1>
+
+        <div class="filter-ui">
+            <label>
+                Filter by time:
+                <input id="time-slider" type="range" min="-1" max="1440" value="-1" />
+            </label>
+
+            <label class="slider-labels">
+                <time id="selected-time"></time>
+                <em id="any-time">(any time)</em>
+            </label>
+        </div>
+    </header>
+
 
     <div id="map">
         <svg></svg>
