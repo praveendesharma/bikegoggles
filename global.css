@@ -1,30 +1,47 @@
+/* Center the whole content column */
 body {
   font: 100%/1.5 system-ui, sans-serif;
+  margin: 0;
+  padding: 2em;
   display: flex;
-  flex-flow: column;
+  justify-content: center;
+}
+
+/* Container for everything (header + map) */
+main {
+  width: 100%;
   max-width: 80em;
-  min-height: 100vh;
-  box-sizing: border-box;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
   padding: 1em;
 }
 
+/* Header layout inside the main container */
 header {
   display: flex;
   justify-content: space-between;
-  gap: 1em;
+  align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 1em;
 }
 
+/* Title and slider style */
 header h1 {
   margin: 0;
+  font-size: 2em;
+  white-space: nowrap;
 }
 
 .filter-ui {
   display: flex;
   align-items: center;
-  gap: 0.75em;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+#time-slider {
+  min-width: 300px;
+  flex-grow: 1;
 }
 
 .slider-labels {
@@ -32,15 +49,15 @@ header h1 {
   flex-direction: column;
   align-items: flex-end;
   font-size: 0.9em;
-  margin-top: 0.2em;
 }
 
-#selected-time {
+#selected-time,
+#any-time {
   display: block;
+  text-align: right;
 }
 
 #any-time {
-  display: block;
   font-style: italic;
   color: gray;
 }
