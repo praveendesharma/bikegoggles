@@ -161,6 +161,8 @@ map.on('load', async () => {
     .domain([0, d3.max(stations, (d) => d.totalTraffic)])
     .range([0, 25]);
 
+    const stationFlow = d3.scaleQuantize().domain([0, 1]).range([0, 0.5, 1]);
+
     const svg = d3.select('#map').select('svg');
 
     // Append circles to the SVG for each station
@@ -170,6 +172,8 @@ map.on('load', async () => {
     .enter()
     .append('circle')
     .attr('r', 5) // Radius of the circle
+    .style('--departure-ratio', (d) =>
+      stationFlow(d.departures / d.totalTraffic))
     .attr('fill', 'steelblue') // Circle fill color
     .attr('stroke', 'white') // Circle border color
     .attr('stroke-width', 1) // Circle border thickness
@@ -198,7 +202,10 @@ map.on('load', async () => {
         circles
             .data(filteredStations, d => d.short_name)
             .join('circle')
-            .attr('r', (d) => radiusScale(d.totalTraffic));
+            .attr('r', (d) => radiusScale(d.totalTraffic))
+            .style('--departure-ratio', (d) =>
+              stationFlow(d.departures / d.totalTraffic)
+            );
     }
 
     // Update display when slider changes
